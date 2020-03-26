@@ -1,0 +1,14 @@
+country,
+cases,
+todayCases,
+deaths,
+todayDeaths,
+recovered,
+active,
+critical,
+casesPerOneMillion,
+deathsPerOneMillion,
+countryInfo: {
+iso3,
+iso2
+}
