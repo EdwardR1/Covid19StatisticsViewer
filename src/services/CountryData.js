@@ -1,22 +1,24 @@
-const countries = require("countries-list");
+// const countries = require("countries-list");
 
-const getAllCountryCodes = () => {
+import countries from "countries-list";
+
+export const getAllCountryCodes = () => {
   return Object.keys(countries.countries);
 };
 
-const getAllCountryNames = () => {
+export const getAllCountryNames = () => {
   let codes = getAllCountryCodes();
   let names = [];
   codes.forEach(code => names.push(countries.countries[code]["name"]));
   return names.sort();
 };
 
-const getContinents = () => {
+export const getContinents = () => {
   let codes = Object.keys(countries.continents);
   return codes;
 };
 
-const getContinentCountryMap = () => {
+export const getContinentCountryMap = () => {
   let countryValues = countries.countries;
   let codes = getAllCountryCodes();
   let map = {};
@@ -27,7 +29,7 @@ const getContinentCountryMap = () => {
   return map;
 };
 
-const getCountriesInContinent = (countryNames, map, continentCode) => {
+export const getCountriesInContinent = (countryNames, map, continentCode) => {
   let countriesInside = [];
   countryNames.forEach(name => {
     if (map[name] === continentCode) {
@@ -36,13 +38,4 @@ const getCountriesInContinent = (countryNames, map, continentCode) => {
   });
   let Name = countries.continents[continentCode];
   return { [Name]: countriesInside };
-};
-
-
-module.exports = {
-  getAllCountryCodes,
-  getAllCountryNames,
-  getContinents,
-  getContinentCountryMap,
-  getCountriesInContinent
 };

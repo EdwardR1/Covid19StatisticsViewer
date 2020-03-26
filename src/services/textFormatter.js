@@ -48,7 +48,37 @@ const changeContinentName = continent => {
   }
 };
 
+// Array.prototype.insert = function ( index, item ) {
+//   this.splice( index, 0, item );
+// };
+
+const formatNumber = num => {
+  console.log(num)
+  // let int = parseInt(num);
+  if (isNaN(parseInt(num))) {
+    return num;
+  }
+
+  if(parseInt(num) === 0){
+    return 0
+  }
+  let chars = [];
+  while (parseInt(num) !== 0) {
+    chars.push(parseInt(num % 10).toString());
+    num /= 10;
+  }
+  for (let i = 0; i < chars.length; i += 1) {
+    if (i % 4 === 3) {
+      chars.splice(i, 0, ",");
+    }
+  }
+  return chars.reverse().join("");
+};
+
+console.log(formatNumber("hello"))
+
 module.exports = {
   renderName,
-  changeContinentName
+  changeContinentName,
+  formatNumber
 };
