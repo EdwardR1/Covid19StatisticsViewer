@@ -1,11 +1,8 @@
-import React, {Fragment, useState} from "react";
-import { Country, CountryHeading } from ".";
-import {
-  changeContinentName,
-  renderName,
-  formatPercentage
-} from "../services/textFormatter";
+import React, { Fragment, useState } from "react";
+import { Country, CountryHeading, RecoveryBar } from ".";
+import { changeContinentName, renderName } from "../services/textFormatter";
 import { Container, Outer } from "./Wrappers";
+import {FaAngleDown, FaAngleUp} from 'react-icons/fa'
 
 const Continent = ({ continent, allData, associated }) => {
   const getContinentName = () => changeContinentName(continent);
@@ -62,22 +59,44 @@ const Continent = ({ continent, allData, associated }) => {
 
   let data = getData();
 
+  const toggleView = () => {
+    return (
+      <Fragment>
+        {show ? (
+          <button onClick={() => setShow(!show)} className="btn">
+            <FaAngleDown color="#f8f8f8" />
+          </button>
+        ) : (
+          <button
+            onClick={() => setShow(!show)}
+            className="btn"
+          >
+            <FaAngleUp color="#f8f8f8" />
+          </button>
+        )}
+      </Fragment>
+    );
+  };
   return (
     <Outer>
-      <div
-        className="d-flex flex-row justify-content-between"
-        style={{ color: "#f8f8f8" }}
-      >
-        <h1 className="text-left" style={{fontWeight: 'bold'}}>{getContinentName()}</h1>
-        <h3>Recovered: {formatPercentage(_calculateRecoveryRate(data))}%</h3>
+      <div style={{ color: "#f8f8f8" }}>
+        <div className="d-flex flex-row justify-content-between">
+          <h1 className="text-left" style={{ fontWeight: "bold" }}>
+            {getContinentName()}
+          </h1>
+          {toggleView()}
+        </div>
+
+        <RecoveryBar rate={_calculateRecoveryRate(data)} />
       </div>
-      {show ? 
-      (<Fragment>
-      <CountryHeading />
-      <Container>{renderData(data)}</Container> : 
-      </Fragment>)
-      : <Fragment />
-      }
+      {show ? (
+        <Fragment>
+          <CountryHeading />
+          <Container>{renderData(data)}</Container>
+        </Fragment>
+      ) : (
+        <Fragment />
+      )}
     </Outer>
   );
 };

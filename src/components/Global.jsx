@@ -1,9 +1,10 @@
-import React from "react";
-import { Country, CountryHeading } from ".";
+import React, {Fragment, useState} from "react";
+import { Country, CountryHeading, RecoveryBar } from ".";
 import { Container, Outer } from "./Wrappers";
-import { formatPercentage } from "../services/textFormatter";
+import {FaAngleDown, FaAngleUp} from 'react-icons/fa'
 
 const Global = ({ data }) => {
+  const [show, setShow] = useState(true);
   const _calculateTotalRecovered = data => {
     let total = 0;
     Object.keys(data).map(country => {
@@ -34,7 +35,25 @@ const Global = ({ data }) => {
     </div>
   );
 
-  // console.log(data[0]);
+  const toggleView = () => {
+    return (
+      <Fragment>
+        {show ? (
+          <button onClick={() => setShow(!show)} className="btn">
+            <FaAngleDown color="#f8f8f8" />
+          </button>
+        ) : (
+          <button
+            onClick={() => setShow(!show)}
+            className="btn"
+          >
+            <FaAngleUp color="#f8f8f8" />
+          </button>
+        )}
+      </Fragment>
+    );
+  };
+
   return (
     <Outer>
       <div
@@ -42,12 +61,20 @@ const Global = ({ data }) => {
         style={{ color: "#f8f8f8" }}
       >
         <h1 className="text-left" style={{fontWeight: 'bold'}}>Global</h1>
-        <h3>Recovered: {formatPercentage(_calculateRecoveryRate(data))}%</h3>
+        {toggleView()}
       </div>
-      <CountryHeading />
-      <Container>{renderData}</Container>
+      <RecoveryBar rate={_calculateRecoveryRate(data)} />
+      {show ? (
+        <Fragment>
+          <CountryHeading />
+          <Container>{renderData}</Container>
+        </Fragment>
+      ) : (
+        <Fragment />
+      )}
     </Outer>
   );
 };
 
 export { Global };
+
