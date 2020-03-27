@@ -51,6 +51,14 @@ function View() {
     return count;
   };
 
+  const getTodayCases = () => {
+    let count = 0;
+    Object.keys(sortedCountryStats).map(key => {
+      return (count += sortedCountryStats[key]["todayCases"]);
+    })
+    return count;
+  }
+
   const renderContinents = () => {
     return (
       <div>
@@ -90,6 +98,7 @@ function View() {
             <LeftMenu
               generalStatistics={generalStatistics}
               serious={getSeriousCases()}
+              casesToday={getTodayCases()}
             />
           </div>
         </div>

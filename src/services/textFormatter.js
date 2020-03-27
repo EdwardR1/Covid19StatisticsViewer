@@ -40,7 +40,7 @@ const renderName = name => {
 const changeContinentName = continent => {
   switch (continent) {
     case "North America":
-      return "North and Central America";
+      return "North and Latin America";
     case "Antarctica":
       return "Antarctica and Nearby Areas";
     default:
@@ -53,8 +53,6 @@ const changeContinentName = continent => {
 // };
 
 const formatNumber = num => {
-  console.log(num)
-  // let int = parseInt(num);
   if (isNaN(parseInt(num))) {
     return num;
   }
@@ -75,10 +73,18 @@ const formatNumber = num => {
   return chars.reverse().join("");
 };
 
-console.log(formatNumber("hello"))
+
+const formatPercentage = num => {
+  if(isNaN(parseInt(num))){
+    return 0;
+  }
+  return parseInt(num * 10000) / 100;
+
+}
 
 module.exports = {
   renderName,
   changeContinentName,
-  formatNumber
+  formatNumber,
+  formatPercentage
 };
