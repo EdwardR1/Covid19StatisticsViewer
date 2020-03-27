@@ -111,6 +111,9 @@ function View() {
           </div>
         </div>
       </div>
+      <div className="container" style={{textAlign: 'left', overflow: 'auto', height: "50%", color: "#f8f8f8", padding: 10, paddingBottom: 30}}>
+        <span>*Disclaimer: All the data used is retrieved from open source locations. There may be some discrepancies and inconsistencies between the data found here and other sites online due to inconsistencies of reporting at nation wide levels.</span>
+      </div>
     </div>
   );
 }
