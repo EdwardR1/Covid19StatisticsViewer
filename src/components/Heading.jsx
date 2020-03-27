@@ -14,7 +14,7 @@ const Heading = ({ title, data, icon, color = "#f8f8f8" }) => (
     >
       {icon}
 
-      <h1>{title}</h1>
+      <h3>{title}</h3>
     </div>
     <h2>{data}</h2>
   </div>

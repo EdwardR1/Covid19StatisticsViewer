@@ -86,7 +86,9 @@ function View() {
             backgroundColor: "#547c92",
             padding: 20,
             margin: 20,
-            borderRadius: "10px"
+            borderRadius: "10px",
+            height: "60%",
+            // maxHeight: "50em"
           }}
         >
           <div
