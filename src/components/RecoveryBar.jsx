@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { formatPercentage } from "../services/textFormatter";
 
 const RecoveryBar = ({ rate }) => (
@@ -22,3 +22,4 @@ const RecoveryBar = ({ rate }) => (
 );
 
 export { RecoveryBar };
+
